@@ -8,6 +8,9 @@ import asyncio
 
 logger = logging.getLogger(__name__)
 
+# Costanti
+MARKET_DATA_WAIT_SECONDS = 1  # Tempo di attesa per aggiornamento dati di mercato
+
 
 class IBConnector:
     """Gestisce la connessione con IB Gateway"""
@@ -77,7 +80,7 @@ class IBConnector:
         """
         try:
             ticker = self.ib.reqMktData(contract, '', False, False)
-            self.ib.sleep(1)  # Attendi aggiornamento dati
+            self.ib.sleep(MARKET_DATA_WAIT_SECONDS)  # Attendi aggiornamento dati
             
             bid = ticker.bid if ticker.bid and ticker.bid > 0 else None
             ask = ticker.ask if ticker.ask and ticker.ask > 0 else None

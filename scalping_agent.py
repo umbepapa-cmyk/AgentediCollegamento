@@ -10,6 +10,9 @@ from ib_connector import IBConnector
 from scalping_strategy import ScalpingStrategy
 import config
 
+# Costanti
+SECONDS_PER_MINUTE = 60  # Conversione secondi a minuti
+
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
@@ -238,7 +241,7 @@ class ScalpingAgent:
         try:
             while self.running:
                 # Verifica durata
-                if duration_minutes and (datetime.now() - start_time).total_seconds() / 60 > duration_minutes:
+                if duration_minutes and (datetime.now() - start_time).total_seconds() / SECONDS_PER_MINUTE > duration_minutes:
                     logger.info("Durata esecuzione completata")
                     break
                 
