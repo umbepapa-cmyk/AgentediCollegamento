@@ -3,7 +3,7 @@ IB Gateway connection module.
 Handles connection to Interactive Brokers Gateway for trading operations.
 """
 import logging
-from ib_insync import IB, Contract, util
+from ib_insync import IB, Contract, Order, MarketOrder, LimitOrder, util
 from typing import Optional
 
 logging.basicConfig(level=logging.INFO)
@@ -116,8 +116,6 @@ class IBConnection:
             Trade object or None if failed
         """
         try:
-            from ib_insync import Order, MarketOrder, LimitOrder
-            
             if limit_price:
                 order = LimitOrder(action, quantity, limit_price)
             else:

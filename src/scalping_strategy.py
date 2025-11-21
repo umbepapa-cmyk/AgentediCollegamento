@@ -3,7 +3,7 @@ Scalping strategy module.
 Implements basic scalping trading logic.
 """
 import logging
-from typing import Optional, Dict
+from typing import Optional, Dict, Tuple
 from datetime import datetime
 
 logging.basicConfig(level=logging.INFO)
@@ -82,7 +82,7 @@ class ScalpingStrategy:
         
         return False
     
-    def should_exit_position(self, current_price: float) -> tuple[bool, str]:
+    def should_exit_position(self, current_price: float) -> Tuple[bool, str]:
         """
         Determine if we should exit current position.
         
